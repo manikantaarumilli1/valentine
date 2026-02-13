@@ -199,25 +199,26 @@ ul {
     </div>
 </div>
 
-<audio id="bgMusic" loop controls>
+<!-- Background Music (no controls) -->
+<audio id="bgMusic" loop>
     <source src="Love_Bgm.mp3" type="audio/mp3">
 </audio>
 
-
 <script>
 const music = document.getElementById("bgMusic");
-const startScreen = document.getElementById("startScreen");
-const playMusicButton = document.getElementById("playMusicButton");
 
-function playMusic() {
-    music.play().then(() => {
-        console.log("Music started!");
-        // Hide start screen and music button
-        startScreen.style.display = "none";
-    }).catch(err => {
-        console.log("Error playing music:", err);
+function startWebsite() {
+    // Play music on first user tap
+    music.play().catch(err => {
+        console.log("Mobile requires user interaction to start audio:", err);
     });
+
+    // Hide start screen and show first page
+    document.getElementById("startScreen").style.display = "none";
+    document.getElementById("page1").style.display = "block";
 }
+</script>
+
 
 function nextPage() {
     document.getElementById("page1").style.display = "block";
@@ -291,6 +292,7 @@ setInterval(createEmoji, 200);
 
 </body>
 </html>
+
 
 
 
