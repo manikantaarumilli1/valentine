@@ -193,7 +193,7 @@ ul {
                 You are my strength, my happiness, my best friend, and my forever love.  
                 15 years down… a lifetime to go. 💞
             </p>
-            <button onclick="restart()">Back to Start 💕</button>
+            <button onclick="restart()">Back to Love 💕</button>
         </div>
       <img src="img_4.jpeg" class="side-img" alt="">
     </div>
@@ -230,14 +230,6 @@ function startWebsite() {
     document.getElementById("startScreen").style.display = "none";
     // Show first page
     document.getElementById("page1").style.display = "block";
-
-    // Play music on mobile and desktop
-    music.play().then(() => {
-        console.log("Music started");
-    }).catch(err => {
-        console.log("Audio playback blocked:", err);
-        alert("Tap the play button to start music.");
-    });
 
 }
 
@@ -293,6 +285,7 @@ setInterval(createEmoji, 200);
 
 </body>
 </html>
+
 
 
 
