@@ -10,8 +10,9 @@ body {
     font-family: 'Segoe UI', sans-serif;
     background: linear-gradient(135deg, #fff0f6, #ffe6f2);
     text-align: center;
-    overflow: hidden;
+    /* overflow: hidden; <-- remove this */
     color: #d63384;
+
 }
 .page1-wrapper {
     display: flex;
@@ -30,15 +31,17 @@ body {
     border-radius: 15px;
 }
 
-/* Pages */
 .page {
     display: none;
     padding: 40px 20px;
-    height: 100vh;
+    min-height: 100vh;    /* Use min-height instead of fixed height */
     box-sizing: border-box;
     position: relative;
     z-index: 2;
+    overflow-y: auto;     /* Allow vertical scrolling */
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
 }
+
 
 /* Buttons */
 button {
@@ -79,25 +82,45 @@ button:hover {
 }
 
 
-/* Content Wrapper for side images */
+/* Wrapper for side images + middle content */
 .content-wrapper {
     display: flex;
     justify-content: center;
-    align-items: center;
-    height: 100%;
+    align-items: flex-start;
+    gap: 20px;
+    flex-wrap: wrap; /* Allow wrapping on small screens */
 }
 
+/* Side images */
 .side-img {
-    width: 25%;
+    width: 35%;       /* Adjust for desktop */
+    max-width: 150px; /* Limit size on mobile */
     height: auto;
-    object-fit: contain;
+    object-fit: cover;
+    border-radius: 10px;
 }
 
+/* Middle content */
 .middle-content {
-    width: 50%;
-    padding: 0 20px;
-    text-align: center;
+    max-width: 500px;
+    flex: 1;          /* Take remaining space */
 }
+
+@media (max-width: 768px) {
+    .content-wrapper {
+        flex-direction: column;
+        align-items: center;
+    }
+    .side-img {
+        width: 60%;
+        margin: 10px 0;
+    }
+    .middle-content {
+        max-width: 90%;
+        text-align: center;
+    }
+}
+
 
 /* Bullet list style */
 ul {
@@ -112,6 +135,7 @@ ul {
 <body>
 
 <!-- START SCREEN -->
+    <button id="playMusicButton" onclick="playMusic()" style="display:none;">Play Music 🎵</button>
 <div id="startScreen" onclick="startWebsite()">
     <h1>💖 15 Years of Love 💖</h1>
     <h2>Tap anywhere to begin our beautiful love journey ❤️</h2>
@@ -136,7 +160,6 @@ ul {
         And even today, I would still choose you all over again. ❤️
     </p>
     <!-- Image at bottom -->
-<img src="img_5.jpeg" class="page1-img" alt="">
     <button onclick="nextPage()">Our Beautiful Memories 💕</button>
 </div>
 
@@ -177,19 +200,33 @@ ul {
     </div>
 </div>
 
-<!-- Background Music -->
-<audio id="bgMusic" loop>
+<audio id="bgMusic" loop controls>
     <source src="Love_Bgm.mp3" type="audio/mp3">
 </audio>
 
+
 <script>
-// Start website
+const music = document.getElementById("bgMusic");
+function playMusic() {
+    music.play();
+    document.getElementById("playMusicButton").style.display = "none";
+}
+
+
 function startWebsite() {
+    // Hide start screen
     document.getElementById("startScreen").style.display = "none";
+    // Show first page
     document.getElementById("page1").style.display = "block";
 
-    const music = document.getElementById("bgMusic");
-    music.play().catch(() => {});
+    // Play music on mobile and desktop
+    music.play().then(() => {
+        console.log("Music started");
+    }).catch(err => {
+        console.log("Audio playback blocked:", err);
+        alert("Tap the play button to start music.");
+    });
+
 }
 
 // Navigation
@@ -244,6 +281,11 @@ setInterval(createEmoji, 200);
 
 </body>
 </html>
+
+
+
+
+
 
 
 
