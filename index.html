@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>15 Years of Love 💖</title>
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #fff0f6, #ffe6f2);
+    text-align: center;
+    overflow: hidden;
+    color: #d63384;
+}
+
+/* Pages */
+.page {
+    display: none;
+    padding: 40px 20px;
+    height: 100vh;
+    box-sizing: border-box;
+    position: relative;
+    z-index: 2;
+}
+
+/* Buttons */
+button {
+    padding: 12px 25px;
+    font-size: 1rem;
+    border-radius: 30px;
+    border: none;
+    background-color: #ff4da6;
+    color: white;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+button:hover {
+    background-color: #e60073;
+}
+
+/* Start Screen */
+#startScreen {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #ffe6f2, #fff0f6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 5;
+    cursor: pointer;
+}
+
+.floatingEmoji {
+    position: fixed;
+    font-size: 20px;
+    z-index: 3;  
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+
+/* Content Wrapper for side images */
+.content-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.side-img {
+    width: 25%;
+    height: auto;
+    object-fit: contain;
+}
+
+.middle-content {
+    width: 50%;
+    padding: 0 20px;
+    text-align: center;
+}
+
+/* Bullet list style */
+ul {
+    text-align: left;
+    max-width: 600px;
+    margin: 20px auto;
+    line-height: 1.8;
+    font-size: 1.1rem;
+}
+</style>
+</head>
+<body>
+
+<!-- START SCREEN -->
+<div id="startScreen" onclick="startWebsite()">
+    <h1>💖 15 Years of Love 💖</h1>
+    <h2>Tap anywhere to begin our beautiful love journey ❤️</h2>
+</div>
+
+<!-- PAGE 1 -->
+<div class="page" id="page1">
+    <h1>Happy Valentine’s Day My Love ❤️</h1>
+    <p>
+        15 years ago, our Journey began as a beautiful marriage —  
+        not just two people coming together,  
+        but two hearts choosing each other forever. 💍
+    </p>
+    <p>
+        From secret smiles to lifelong promises,  
+        from dreams in our eyes to building a family together —  
+        we created a life filled with love, trust, and endless memories. 💞
+    </p>
+    <p>
+        Through every challenge, every celebration,  
+        we stood side by side.  
+        And even today, I would still choose you all over again. ❤️
+    </p>
+    <!-- Image at bottom -->
+    <img src="Images/img_5.jpeg" class="side-img" alt="" style="width:11%; margin-top:20px; border-radius:15px;">
+
+
+    <br>
+    <button onclick="nextPage()">Our Beautiful Memories 💕</button>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page" id="page2">
+    <div class="content-wrapper">
+        <img src="Images/img_1.jpeg" class="side-img" alt="">
+        <div class="middle-content">
+            <h1>15 Years of Precious Memories 💖</h1>
+            <ul>
+                <li>💍 The day we said “I do”</li>
+                <li>🏡 Building our first home together</li>
+                <li>✨ Dreaming about our future late at night</li>
+                <li>😂 Laughing at silly jokes only we understand</li>
+                <li>🤝 Supporting each other in difficult times</li>
+                <li>❤️ Growing stronger with every passing year</li>
+                <li>💞 Choosing each other — every single day</li>
+            </ul>
+            <button onclick="nextPage2()">Forever & Always 💘</button>
+        </div>
+        <img src="Images/img_3.jpeg" class="side-img" alt="">
+    </div>
+</div>
+
+<!-- PAGE 3 (Last Page) -->
+<div class="page" id="page3">
+    <div class="content-wrapper">
+        <img src="Images/img_2.jpeg" class="side-img" alt="">
+        <div class="middle-content">
+            <h1>Forever My Valentine ❤️</h1>
+            <p>
+                You are my strength, my happiness, my best friend, and my forever love.  
+                15 years down… a lifetime to go. 💞
+            </p>
+            <button onclick="restart()">Back to Start 💕</button>
+        </div>
+        <img src="Images/img_4.jpeg" class="side-img" alt="">
+    </div>
+</div>
+
+<!-- Background Music -->
+<audio id="bgMusic" loop>
+    <source src="Love_Bgm.mp3" type="audio/mp3">
+</audio>
+
+<script>
+// Start website
+function startWebsite() {
+    document.getElementById("startScreen").style.display = "none";
+    document.getElementById("page1").style.display = "block";
+
+    const music = document.getElementById("bgMusic");
+    music.play().catch(() => {});
+}
+
+// Navigation
+function nextPage() {
+    document.getElementById("page1").style.display = "none";
+    document.getElementById("page2").style.display = "block";
+}
+
+function nextPage2() {
+    document.getElementById("page2").style.display = "none";
+    document.getElementById("page3").style.display = "block";
+}
+
+function restart() {
+    document.getElementById("page3").style.display = "none";
+    document.getElementById("page1").style.display = "block";
+}
+
+// ❤️🌹🌸 FLOATING BACKGROUND (Works on all pages including start screen)
+const emojis = ["❤️","💖","💘","💕","💞","💓","💗","🌹","🌸","🌸","🌹"];
+
+function createEmoji() {
+    const emoji = document.createElement("span");
+    emoji.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
+
+    emoji.style.position = "fixed";
+    emoji.style.left = Math.random() * window.innerWidth + "px";
+    emoji.style.top = window.innerHeight + "px";
+    emoji.style.fontSize = (Math.random() * 20 + 20) + "px";
+    emoji.style.zIndex = "1"; // above body background
+    emoji.style.pointerEvents = "none";
+
+    document.body.appendChild(emoji);
+
+    let position = window.innerHeight;
+    const speed = Math.random() * 2 + 1;
+
+    const fall = setInterval(() => {
+        position -= speed;
+        emoji.style.top = position + "px";
+
+        if (position < -50) {
+            clearInterval(fall);
+            emoji.remove();
+        }
+    }, 20);
+}
+
+// Start floating emojis immediately, even on start screen
+setInterval(createEmoji, 200);
+</script>
+
+</body>
+</html>
