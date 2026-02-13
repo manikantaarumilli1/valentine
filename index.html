@@ -10,7 +10,7 @@ body {
     font-family: 'Segoe UI', sans-serif;
     background: linear-gradient(135deg, #fff0f6, #ffe6f2);
     text-align: center;
-    overflow: hidden;
+    overflow: auto; /* Allow scrolling on mobile */
     color: #d63384;
 }
 .page1-wrapper {
@@ -30,11 +30,10 @@ body {
     border-radius: 15px;
 }
 
-/* Pages */
 .page {
     display: none;
     padding: 40px 20px;
-    height: 100vh;
+    min-height: 100vh; /* Use min-height instead of fixed height */
     box-sizing: border-box;
     position: relative;
     z-index: 2;
@@ -88,18 +87,18 @@ button:hover {
 }
 
 .side-img {
-    width: 25%;
+    width: 40%;
+    max-width: 150px; /* Optional for mobile */
     height: auto;
-    object-fit: contain;
+    object-fit: cover;
 }
 
 .middle-content {
-    width: 50%;
-    padding: 0 20px;
-    text-align: center;
+    display: inline-block;
+    max-width: 80%;
+    vertical-align: top;
 }
 
-/* Bullet list style */
 ul {
     text-align: left;
     max-width: 600px;
@@ -244,6 +243,7 @@ setInterval(createEmoji, 200);
 
 </body>
 </html>
+
 
 
 
