@@ -135,10 +135,10 @@ ul {
 <body>
 
 <!-- START SCREEN -->
-    <button id="playMusicButton" onclick="playMusic()" style="display:none;">Play Music 🎵</button>
 <div id="startScreen" onclick="startWebsite()">
     <h1>💖 15 Years of Love 💖</h1>
     <h2>Tap anywhere to begin our beautiful love journey ❤️</h2>
+    <button id="playMusicButton" onclick="playMusic()" style="display:none;">Play Music 🎵</button>
 </div>
 
 <!-- PAGE 1 -->
@@ -207,10 +207,23 @@ ul {
 
 <script>
 const music = document.getElementById("bgMusic");
+const startScreen = document.getElementById("startScreen");
+const playMusicButton = document.getElementById("playMusicButton");
+
 function playMusic() {
-    music.play();
-    document.getElementById("playMusicButton").style.display = "none";
+    music.play().then(() => {
+        console.log("Music started!");
+        // Hide start screen and music button
+        startScreen.style.display = "none";
+    }).catch(err => {
+        console.log("Error playing music:", err);
+    });
 }
+
+function nextPage() {
+    document.getElementById("page1").style.display = "block";
+}
+
 
 
 function startWebsite() {
@@ -281,6 +294,7 @@ setInterval(createEmoji, 200);
 
 </body>
 </html>
+
 
 
 
