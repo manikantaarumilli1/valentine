@@ -212,6 +212,9 @@ function startWebsite() {
 
     const music = document.getElementById("bgMusic");
     music.play().catch(() => {});
+    music.play().catch(() => {
+        console.log("Audio playback blocked on mobile until user interacts.");
+    });
 }
 
 // Navigation
@@ -266,6 +269,7 @@ setInterval(createEmoji, 200);
 
 </body>
 </html>
+
 
 
 
