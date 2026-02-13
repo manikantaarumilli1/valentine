@@ -226,12 +226,18 @@ function nextPage() {
 
 
 function startWebsite() {
-    // Hide start screen
-    document.getElementById("startScreen").style.display = "none";
-    // Show first page
-    document.getElementById("page1").style.display = "block";
+    const music = document.getElementById("bgMusic");
 
+    // Try to play music on tap
+    music.play().catch(err => {
+        console.log("Mobile requires user interaction to start audio:", err);
+    });
+
+    // Hide the start screen and show first page
+    document.getElementById("startScreen").style.display = "none";
+    document.getElementById("page1").style.display = "block";
 }
+
 
 // Navigation
 function nextPage() {
@@ -285,6 +291,7 @@ setInterval(createEmoji, 200);
 
 </body>
 </html>
+
 
 
 
