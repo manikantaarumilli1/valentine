@@ -135,6 +135,7 @@ ul {
 <body>
 
 <!-- START SCREEN -->
+    <button id="playMusicButton" onclick="playMusic()" style="display:none;">Play Music 🎵</button>
 <div id="startScreen" onclick="startWebsite()">
     <h1>💖 15 Years of Love 💖</h1>
     <h2>Tap anywhere to begin our beautiful love journey ❤️</h2>
@@ -205,16 +206,27 @@ ul {
 
 
 <script>
-// Start website
+const music = document.getElementById("bgMusic");
+function playMusic() {
+    music.play();
+    document.getElementById("playMusicButton").style.display = "none";
+}
+
+
 function startWebsite() {
+    // Hide start screen
     document.getElementById("startScreen").style.display = "none";
+    // Show first page
     document.getElementById("page1").style.display = "block";
 
-    const music = document.getElementById("bgMusic");
-    music.play().catch(() => {});
-    music.play().catch(() => {
-        console.log("Audio playback blocked on mobile until user interacts.");
+    // Play music on mobile and desktop
+    music.play().then(() => {
+        console.log("Music started");
+    }).catch(err => {
+        console.log("Audio playback blocked:", err);
+        alert("Tap the play button to start music.");
     });
+
 }
 
 // Navigation
@@ -269,6 +281,7 @@ setInterval(createEmoji, 200);
 
 </body>
 </html>
+
 
 
 
