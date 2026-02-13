@@ -10,7 +10,7 @@ body {
     font-family: 'Segoe UI', sans-serif;
     background: linear-gradient(135deg, #fff0f6, #ffe6f2);
     text-align: center;
-    overflow: auto; /* Allow scrolling on mobile */
+    overflow: hidden;
     color: #d63384;
 }
 .page1-wrapper {
@@ -30,10 +30,11 @@ body {
     border-radius: 15px;
 }
 
+/* Pages */
 .page {
     display: none;
     padding: 40px 20px;
-    min-height: 100vh; /* Use min-height instead of fixed height */
+    height: 100vh;
     box-sizing: border-box;
     position: relative;
     z-index: 2;
@@ -87,18 +88,18 @@ button:hover {
 }
 
 .side-img {
-    width: 40%;
-    max-width: 150px; /* Optional for mobile */
+    width: 25%;
     height: auto;
-    object-fit: cover;
+    object-fit: contain;
 }
 
 .middle-content {
-    display: inline-block;
-    max-width: 80%;
-    vertical-align: top;
+    width: 50%;
+    padding: 0 20px;
+    text-align: center;
 }
 
+/* Bullet list style */
 ul {
     text-align: left;
     max-width: 600px;
